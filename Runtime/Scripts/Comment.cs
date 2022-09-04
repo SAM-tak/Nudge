@@ -36,7 +36,5 @@ namespace AID.Nudge
             linkedObjects = new UnityEngine.Object[objs.Length];
             for (int i = 0; i < objs.Length; i++) linkedObjects[i - 1] = objs[i];
         }
-
-        //public UnityEngine.Object PrimaryLinkedObject => linkedObjects != null && linkedObjects.Length > 0 ? linkedObjects[0] : null;
     }
 }
