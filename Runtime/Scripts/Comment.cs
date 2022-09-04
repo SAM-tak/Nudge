@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace AID
+namespace AID.Nudge
 {
     public interface ICommentHolder
     {

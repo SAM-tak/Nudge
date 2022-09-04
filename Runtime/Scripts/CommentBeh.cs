@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace AID
+namespace AID.Nudge
 {
     //prevent it from showing up in add component menu it's not that kind of thing
     [AddComponentMenu("")]
