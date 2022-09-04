@@ -10,22 +10,25 @@ namespace AID.Nudge
         {
             var nudgeSettings = NudgeSettings.instance;
 
-            if (!nudgeSettings.showHidden && commentBeh.comment.Hidden && (gizmoType & GizmoType.Selected) == 0)
+            if (!nudgeSettings.showHidden && commentBeh.comment.hidden && (gizmoType & GizmoType.Selected) == 0)
                 return;
 
             Gizmos.DrawIcon(
                 commentBeh.transform.position,
-                commentBeh.comment.IsTask ? nudgeSettings.commentTaskGizmoPath : nudgeSettings.sceneCommentGizmoPath,
+                commentBeh.comment.isTask ? nudgeSettings.commentTaskGizmoPath : nudgeSettings.sceneCommentGizmoPath,
                 true);
 
             if ((gizmoType & GizmoType.Selected) != 0 || nudgeSettings.drawLinkedConnection)
             {
-                AttemptToDrawLine(commentBeh.transform, commentBeh.comment.PrimaryLinkedObject, commentBeh.comment, nudgeSettings);
-
-                foreach (var item in commentBeh.comment.AdditionalLinkedObjects)
+                foreach (var item in commentBeh.comment.linkedObjects)
                 {
                     AttemptToDrawLine(commentBeh.transform, item, commentBeh.comment, nudgeSettings);
                 }
+            }
+
+            if (!commentBeh.comment.hidden)
+            {
+                DrawString(commentBeh.transform.position, commentBeh.comment.body, commentBeh.comment.textColor, new Vector2(0.5f, 0.5f), 14f);
             }
         }
 
@@ -47,7 +50,7 @@ namespace AID.Nudge
                 {
                     Gizmos.DrawIcon(
                         linkedTransform.position,
-                        comment.IsTask ? nudgeSettings.commentTaskLinkedGizmoPath : nudgeSettings.commentLinkedGizmoPath,
+                        comment.isTask ? nudgeSettings.commentTaskLinkedGizmoPath : nudgeSettings.commentLinkedGizmoPath,
                         true);
 
                     var prevCol = Gizmos.color;
@@ -56,6 +59,30 @@ namespace AID.Nudge
                     Gizmos.color = prevCol;
                 }
             }
+        }
+
+        static public void DrawString(Vector3 worldPosition, string text, Color textColor, Vector2 anchor, float textSize)
+        {
+            var view = UnityEditor.SceneView.currentDrawingSceneView;
+            if (!view)
+                return;
+            Vector3 screenPosition = view.camera.WorldToScreenPoint(worldPosition);
+            if (screenPosition.y < 0 || screenPosition.y > view.camera.pixelHeight || screenPosition.x < 0 || screenPosition.x > view.camera.pixelWidth || screenPosition.z < 0)
+                return;
+            var pixelRatio = UnityEditor.HandleUtility.GUIPointToScreenPixelCoordinate(Vector2.right).x - UnityEditor.HandleUtility.GUIPointToScreenPixelCoordinate(Vector2.zero).x;
+            UnityEditor.Handles.BeginGUI();
+            var style = new GUIStyle(GUI.skin.label)
+            {
+                fontSize = (int)textSize,
+                normal = new GUIStyleState() { textColor = textColor }
+            };
+            Vector2 size = style.CalcSize(new GUIContent(text)) * pixelRatio;
+            var alignedPosition =
+                ((Vector2)screenPosition +
+                size * ((anchor + Vector2.left + Vector2.up) / 2f)) * (Vector2.right + Vector2.down) +
+                Vector2.up * view.camera.pixelHeight;
+            GUI.Label(new Rect(alignedPosition / pixelRatio, size / pixelRatio), text, style);
+            UnityEditor.Handles.EndGUI();
         }
     }
 }

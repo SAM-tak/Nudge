@@ -6,7 +6,7 @@ namespace AID.Nudge
     [CustomPropertyDrawer(typeof(Comment))]
     public class CommentPropertyDrawer : PropertyDrawer
     {
-        private const string HiddenPropName = "isHidden";
+        private const string HiddenPropName = "hidden";
         private readonly GUIContent HiddenPropLabel = new GUIContent("Comment Hidden");
 
         public override float GetPropertyHeight(SerializedProperty property, GUIContent label)

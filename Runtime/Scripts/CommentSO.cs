@@ -32,7 +32,7 @@ namespace AID.Nudge
         [ContextMenu("Copy GUID")]
         public void CopyGUID()
         {
-            UnityEditor.EditorGUIUtility.systemCopyBuffer = comment.GUIDString;
+            UnityEditor.EditorGUIUtility.systemCopyBuffer = comment.guidString;
         }
 
 #endif

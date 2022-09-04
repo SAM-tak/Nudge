@@ -77,11 +77,11 @@ namespace AID.Nudge
         private bool PassesFilter(ICommentHolder item)
         {
             if (item == null) return false;
-            if (item.Comment.Hidden && !nudgeSettings.showHidden) return false;
-            if (!item.Comment.IsTask && nudgeSettings.onlyShowTasks) return false;
+            if (item.Comment.hidden && !nudgeSettings.showHidden) return false;
+            if (!item.Comment.isTask && nudgeSettings.onlyShowTasks) return false;
             if (!string.IsNullOrEmpty(searchString) &&
-                !item.Comment.GUIDString.Contains(searchString) &&
-                !item.Comment.Body.Contains(searchString))
+                !item.Comment.guidString.Contains(searchString) &&
+                !item.Comment.body.Contains(searchString))
                 return false;
 
             return true;
@@ -169,11 +169,11 @@ namespace AID.Nudge
                     }
 
                     if (!string.IsNullOrEmpty(searchString) &&
-                        !item.Comment.GUIDString.Contains(searchString) &&
-                        !item.Comment.Body.Contains(searchString))
+                        !item.Comment.guidString.Contains(searchString) &&
+                        !item.Comment.body.Contains(searchString))
                         continue;
 
-                    if (item.Comment.Hidden)
+                    if (item.Comment.hidden)
                     {
                         if (!nudgeSettings.showHidden)
                             continue;
@@ -181,10 +181,10 @@ namespace AID.Nudge
                         GUI.color *= nudgeSettings.hiddenTint;
                     }
 
-                    if (!item.Comment.IsTask && nudgeSettings.onlyShowTasks)
+                    if (!item.Comment.isTask && nudgeSettings.onlyShowTasks)
                         continue;
 
-                    if (item.Comment.IsTask)
+                    if (item.Comment.isTask)
                         GUI.color *= nudgeSettings.isTaskTint;
 
                     EditorGUILayout.ObjectField(item.UnityObject, type, true);
@@ -209,8 +209,8 @@ namespace AID.Nudge
             if (lhs == null) return -1;
             if (rhs == null) return 1;
 
-            var lhsDT = System.DateTime.Parse(lhs.Comment.DateCreated);
-            var rhsDT = System.DateTime.Parse(rhs.Comment.DateCreated);
+            var lhsDT = System.DateTime.Parse(lhs.Comment.dateCreated);
+            var rhsDT = System.DateTime.Parse(rhs.Comment.dateCreated);
 
             return -System.DateTime.Compare(lhsDT, rhsDT);
         }
@@ -236,7 +236,7 @@ namespace AID.Nudge
             if (lhs == null) return -1;
             if (rhs == null) return 1;
 
-            return string.Compare(lhs.Comment.Body, rhs.Comment.Body);
+            return string.Compare(lhs.Comment.body, rhs.Comment.body);
         }
     }
 
@@ -248,7 +248,7 @@ namespace AID.Nudge
             if (lhs == null) return -1;
             if (rhs == null) return 1;
 
-            return -lhs.Comment.Priority.CompareTo(rhs.Comment.Priority);
+            return -lhs.Comment.priority.CompareTo(rhs.Comment.priority);
         }
     }
 
