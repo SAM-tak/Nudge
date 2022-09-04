@@ -262,11 +262,14 @@ MonoBehaviour:
       f
 
       a'
-    textColor: {r: 0, g: 0, b: 0, a: 1}
     linkedObjects:
     - {fileID: 2143947435}
     dateCreated: 2020-06-10T22:17:18.1983260+10:00
     guidString: 2a8b61dd46a64f15bcaca6468e107096
+  textColor: {r: 0, g: 0, b: 0, a: 1}
+  textOffset: {x: 1.7, y: -0.08}
+  textSize: 14
+  hidesTextInSceneViewport: 0
 --- !u!4 &278998270
 Transform:
   m_ObjectHideFlags: 0
@@ -559,10 +562,13 @@ MonoBehaviour:
     body: '...
 
       ...'
-    textColor: {r: 0, g: 0, b: 0, a: 1}
     linkedObjects: []
     dateCreated: 2020-06-10T22:17:07.6033913+10:00
     guidString: adee113656c3404295b8a59b4186eb96
+  textColor: {r: 0, g: 0, b: 0, a: 1}
+  textOffset: {x: 1, y: 1}
+  textSize: 14
+  hidesTextInSceneViewport: 0
 --- !u!4 &739536165
 Transform:
   m_ObjectHideFlags: 0
@@ -614,11 +620,14 @@ MonoBehaviour:
     body: '...
 
       ...'
-    textColor: {r: 0, g: 0, b: 0, a: 1}
     linkedObjects:
     - {fileID: 139618698}
     dateCreated: 2020-06-11T15:49:01.1550066+10:00
     guidString: 4c991b5430884817ad573f990026f4b7
+  textColor: {r: 0, g: 0, b: 0, a: 1}
+  textOffset: {x: 1, y: 1}
+  textSize: 14
+  hidesTextInSceneViewport: 0
 --- !u!4 &853960371
 Transform:
   m_ObjectHideFlags: 0
@@ -668,11 +677,14 @@ MonoBehaviour:
     isTask: 1
     priority: 0
     body: Comment On Light
-    textColor: {r: 0, g: 0, b: 0, a: 1}
     linkedObjects:
     - {fileID: 1868179878}
     dateCreated: 2020-06-10T22:17:02.3126281+10:00
     guidString: 2884638f5b8c4bb1b790a0062ab2b2c2
+  textColor: {r: 0, g: 0, b: 0, a: 1}
+  textOffset: {x: 0.16, y: 2.65}
+  textSize: 14
+  hidesTextInSceneViewport: 0
 --- !u!4 &875075123
 Transform:
   m_ObjectHideFlags: 0
@@ -724,7 +736,6 @@ MonoBehaviour:
     body: 'Comment On Many
 
 '
-    textColor: {r: 0, g: 0, b: 0, a: 1}
     linkedObjects:
     - {fileID: 327834082}
     - {fileID: 1865685602}
@@ -732,6 +743,10 @@ MonoBehaviour:
     - {fileID: 74338422}
     dateCreated: 2020-09-19T20:57:54.9838847+10:00
     guidString: 9745050ceb92438eab456fe5ac43dd25
+  textColor: {r: 0, g: 0, b: 0, a: 1}
+  textOffset: {x: 0.07, y: 1}
+  textSize: 14
+  hidesTextInSceneViewport: 0
 --- !u!4 &1036692988
 Transform:
   m_ObjectHideFlags: 0

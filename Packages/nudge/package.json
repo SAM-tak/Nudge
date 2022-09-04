@@ -1,5 +1,5 @@
 {
-  "name": "com.aid.nudge",
+  "name": "net.sam-tak.nudge",
   "version": "0.4.0",
   "displayName": "Nudge",
   "unity": "2020.1",
@@ -9,7 +9,7 @@
     "notes"
   ],
   "author": {
-    "name": "Steve Halliwell",
+    "name": "Steve Halliwell, Osamu Takasugi",
     "url": "http://stevehalliwell.com/"
   },
   "hideInEditor": false,
