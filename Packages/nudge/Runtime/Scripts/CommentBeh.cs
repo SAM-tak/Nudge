@@ -12,6 +12,9 @@ namespace AID.Nudge
     {
         public Comment comment;
         public Color textColor = Color.black;
+        public Vector2 textOffset = Vector2.one;
+        [Range(1, 100)]
+        public float textSize = 14f;
         public bool hidesTextInSceneViewport;
 
         public Comment Comment => comment;

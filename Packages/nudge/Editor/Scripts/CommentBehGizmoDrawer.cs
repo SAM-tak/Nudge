@@ -28,7 +28,7 @@ namespace AID.Nudge
 
             if (!commentBeh.hidesTextInSceneViewport && !commentBeh.comment.hidden)
             {
-                DrawString(commentBeh.transform.position, commentBeh.comment.body, commentBeh.textColor, new Vector2(0.5f, 0), 14f);
+                DrawString(commentBeh.transform.position, commentBeh.comment.body, commentBeh.textColor, commentBeh.textOffset, commentBeh.textSize);
             }
         }
 
