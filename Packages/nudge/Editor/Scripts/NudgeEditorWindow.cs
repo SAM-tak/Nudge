@@ -3,7 +3,7 @@ using System.Linq;
 using UnityEditor;
 using UnityEngine;
 
-namespace AID.Editor
+namespace AID.Nudge
 {
     public class NudgeEditorWindow : EditorWindow
     {
@@ -40,7 +40,7 @@ namespace AID.Editor
 
         private void OnEnable()
         {
-            nudgeSettings = NudgeSettings.GetOrCreateSettings();
+            nudgeSettings = NudgeSettings.instance;
             titleContent = new GUIContent("Tasks & Comments");
             sortingComparer = new CommentHolderDateCreatedSort();
             Recache();

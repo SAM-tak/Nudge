@@ -1,19 +1,20 @@
 ﻿using UnityEditor;
 using UnityEngine;
 
-namespace AID.Editor
+namespace AID.Nudge
 {
     public static class NudgeMenuItems
     {
         [MenuItem("GameObject/Comment %#c", false, 20)]
         public static void CreateSceneComment()
         {
-            var nudgeSettings = NudgeSettings.GetOrCreateSettings();
+            var nudgeSettings = NudgeSettings.instance;
             //as per doco https://docs.unity3d.com/ScriptReference/Selection-transforms.html this gives only scene objects
             var selectedTrans = Selection.transforms;
 
             //should determine if this is in the scene or project?
             var newComment = new GameObject(nudgeSettings.defaultCommentName, typeof(CommentBeh)).GetComponent<CommentBeh>();
+            newComment.tag = "EditorOnly";
 
             if (selectedTrans != null && selectedTrans.Length > 0)
             {
@@ -29,7 +30,7 @@ namespace AID.Editor
         [MenuItem("Assets/Create/CommentSO %#&c")]
         public static void CreateAssetComment()
         {
-            var nudgeSettings = NudgeSettings.GetOrCreateSettings();
+            var nudgeSettings = NudgeSettings.instance;
 
             var newComment = ScriptableObject.CreateInstance<CommentSO>();
             newComment.name = nudgeSettings.defaultCommentName;

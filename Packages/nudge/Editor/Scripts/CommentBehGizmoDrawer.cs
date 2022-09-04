@@ -1,14 +1,14 @@
 ﻿using UnityEditor;
 using UnityEngine;
 
-namespace AID.Editor
+namespace AID.Nudge
 {
     public static class CommentBehGizmoDrawer
     {
-        [DrawGizmo(GizmoType.Selected | GizmoType.NonSelected, typeof(CommentBeh))]
+        [DrawGizmo(GizmoType.Pickable | GizmoType.Selected | GizmoType.NonSelected, typeof(CommentBeh))]
         public static void DrawGizmoForCommentBeh(CommentBeh commentBeh, GizmoType gizmoType)
         {
-            var nudgeSettings = NudgeSettings.GetOrCreateSettings();
+            var nudgeSettings = NudgeSettings.instance;
 
             if (!nudgeSettings.showHidden && commentBeh.comment.Hidden && (gizmoType & GizmoType.Selected) == 0)
                 return;

@@ -1,7 +1,7 @@
 ﻿using UnityEditor;
 using UnityEngine;
 
-namespace AID.Editor
+namespace AID.Nudge
 {
     [CustomPropertyDrawer(typeof(Comment))]
     public class CommentPropertyDrawer : PropertyDrawer
