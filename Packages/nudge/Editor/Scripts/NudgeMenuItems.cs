@@ -15,6 +15,7 @@ namespace AID.Nudge
             //should determine if this is in the scene or project?
             var newComment = new GameObject(nudgeSettings.defaultCommentName, typeof(CommentBeh)).GetComponent<CommentBeh>();
             newComment.tag = "EditorOnly";
+            newComment.comment.textColor = nudgeSettings.defaultTextColor;
 
             if (selectedTrans != null && selectedTrans.Length > 0)
             {
@@ -34,6 +35,7 @@ namespace AID.Nudge
 
             var newComment = ScriptableObject.CreateInstance<CommentSO>();
             newComment.name = nudgeSettings.defaultCommentName;
+            newComment.comment.textColor = nudgeSettings.defaultTextColor;
 
             var selectedAssets = Selection.GetFiltered<Object>(SelectionMode.Assets);
 

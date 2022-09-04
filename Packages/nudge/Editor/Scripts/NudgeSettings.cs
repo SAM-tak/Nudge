@@ -24,6 +24,7 @@ namespace AID.Nudge
         public Color hiddenTint = new Color(0.8f, 0.8f, 0.8f, 1);
         public Color isTaskTint = new Color(0.8f, 1, 0.8f, 1);
         public Color linkedTint = new Color(0.8f, 0.8f, 1, 1);
+        public Color defaultTextColor = Color.white;
         public string defaultCommentName = "New Comment";
         public string defaultTargetedCommentFormat = "Comment On {0}";
 
