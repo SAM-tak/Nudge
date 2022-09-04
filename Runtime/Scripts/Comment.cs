@@ -34,7 +34,7 @@ namespace AID.Nudge
         public void SetSelectedItems(UnityEngine.Object[] objs)
         {
             linkedObjects = new UnityEngine.Object[objs.Length];
-            for (int i = 0; i < objs.Length; i++) linkedObjects[i - 1] = objs[i];
+            for (int i = 0; i < objs.Length; i++) linkedObjects[i] = objs[i];
         }
     }
 }
