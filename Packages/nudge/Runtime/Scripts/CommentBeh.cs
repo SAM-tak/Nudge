@@ -11,17 +11,16 @@ namespace AID.Nudge
     public class CommentBeh : MonoBehaviour, ICommentHolder
     {
         public Comment comment;
+        public Color textColor = Color.black;
+        public bool hidesTextInSceneViewport;
 
         public Comment Comment => comment;
-
         public string Name => gameObject.name;
         public Object UnityObject => this;
 
         public virtual void OnValidate()
         {
-            if (comment == null)
-                comment = new Comment();
-
+            if (comment == null) comment = new Comment();
             comment.ValidateInternalData();
         }
 

@@ -19,7 +19,7 @@ namespace AID.Nudge
 
         [TextArea(5, 25)]
         public string body = "...\n...";
-        public Color textColor;
+        [Space]
         public UnityEngine.Object[] linkedObjects = Array.Empty<UnityEngine.Object>();
 
         [HideInInspector] [SerializeField] public string dateCreated;
