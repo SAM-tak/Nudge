@@ -8,11 +8,12 @@ namespace AID.Nudge
     /// Comment object as monobehaviour to allow for directly attaching as components or within the scene
     /// making direct reference to other elements in the scene itself via the Unity.Object reference.
     /// </summary>
-    public class CommentBeh : MonoBehaviour, ICommentHolder
+    public class CommentGameObject : MonoBehaviour, ICommentHolder
     {
         public Comment comment;
-        public Color textColor = Color.black;
-        public Vector2 textOffset = Vector2.one;
+        public Color normalTextColor = Color.black;
+        public Color hoverTextColor = Color.white;
+        public Vector2 anchor = Vector2.one;
         [Range(1, 100)]
         public float textSize = 14f;
         public bool hidesTextInSceneViewport;

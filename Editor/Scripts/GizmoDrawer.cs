@@ -3,36 +3,35 @@ using UnityEngine;
 
 namespace AID.Nudge
 {
-    public static class CommentBehGizmoDrawer
+    public static class GizmoDrawer
     {
-        [DrawGizmo(GizmoType.Pickable | GizmoType.Selected | GizmoType.NonSelected, typeof(CommentBeh))]
-        public static void DrawGizmoForCommentBeh(CommentBeh commentBeh, GizmoType gizmoType)
+        [DrawGizmo(GizmoType.Pickable | GizmoType.Selected | GizmoType.NonSelected, typeof(CommentGameObject))]
+        public static void DrawGizmo(CommentGameObject commentGO, GizmoType gizmoType)
         {
-            var nudgeSettings = NudgeSettings.instance;
-
-            if (!nudgeSettings.showHidden && commentBeh.comment.hidden && (gizmoType & GizmoType.Selected) == 0)
+            var settings = Settings.instance;
+            if (!settings.showHidden && commentGO.comment.hidden && (gizmoType & GizmoType.Selected) == 0)
                 return;
 
             Gizmos.DrawIcon(
-                commentBeh.transform.position,
-                commentBeh.comment.isTask ? nudgeSettings.commentTaskGizmoPath : nudgeSettings.sceneCommentGizmoPath,
+                commentGO.transform.position,
+                commentGO.comment.isTask ? settings.commentTaskGizmoPath : settings.sceneCommentGizmoPath,
                 true);
 
-            if ((gizmoType & GizmoType.Selected) != 0 || nudgeSettings.drawLinkedConnection)
+            if ((gizmoType & GizmoType.Selected) != 0 || settings.drawLinkedConnection)
             {
-                foreach (var item in commentBeh.comment.linkedObjects)
+                foreach (var item in commentGO.comment.linkedObjects)
                 {
-                    AttemptToDrawLine(commentBeh.transform, item, commentBeh.comment, nudgeSettings);
+                    AttemptToDrawLine(commentGO.transform, item, commentGO.comment, settings);
                 }
             }
 
-            if (!commentBeh.hidesTextInSceneViewport && !commentBeh.comment.hidden)
+            if (!commentGO.hidesTextInSceneViewport && !commentGO.comment.hidden)
             {
-                DrawString(commentBeh.transform.position, commentBeh.comment.body, commentBeh.textColor, commentBeh.textOffset, commentBeh.textSize);
+                DrawString(commentGO);
             }
         }
 
-        private static void AttemptToDrawLine(Transform from, UnityEngine.Object targetObj, Comment comment, NudgeSettings nudgeSettings)
+        static void AttemptToDrawLine(Transform from, UnityEngine.Object targetObj, Comment comment, Settings settings)
         {
             if (targetObj != null)
             {
@@ -50,22 +49,28 @@ namespace AID.Nudge
                 {
                     Gizmos.DrawIcon(
                         linkedTransform.position,
-                        comment.isTask ? nudgeSettings.commentTaskLinkedGizmoPath : nudgeSettings.commentLinkedGizmoPath,
+                        comment.isTask ? settings.commentTaskLinkedGizmoPath : settings.commentLinkedGizmoPath,
                         true);
 
                     var prevCol = Gizmos.color;
-                    Gizmos.color = prevCol * nudgeSettings.linkedTint;
+                    Gizmos.color = prevCol * settings.linkedTint;
                     Gizmos.DrawLine(from.position, linkedTransform.position);
                     Gizmos.color = prevCol;
                 }
             }
         }
 
-        static public void DrawString(Vector3 worldPosition, string text, Color textColor, Vector2 anchor, float textSize)
+        static public void DrawString(CommentGameObject commentGO)
         {
             var view = UnityEditor.SceneView.currentDrawingSceneView;
             if (!view)
                 return;
+            Vector3 worldPosition = commentGO.transform.position;
+            string text = commentGO.comment.body;
+            Color normalTextColor = commentGO.normalTextColor;
+            Color hoverTextColor = commentGO.hoverTextColor;
+            Vector2 anchor = commentGO.anchor;
+            float textSize = commentGO.textSize;
             Vector3 screenPosition = view.camera.WorldToScreenPoint(worldPosition);
             if (screenPosition.y < 0 || screenPosition.y > view.camera.pixelHeight || screenPosition.x < 0 || screenPosition.x > view.camera.pixelWidth || screenPosition.z < 0)
                 return;
@@ -74,7 +79,8 @@ namespace AID.Nudge
             var style = new GUIStyle(GUI.skin.label)
             {
                 fontSize = (int)textSize,
-                normal = new GUIStyleState() { textColor = textColor }
+                normal = new GUIStyleState() { textColor = normalTextColor },
+                hover = new GUIStyleState() { textColor = hoverTextColor }
             };
             Vector2 size = style.CalcSize(new GUIContent(text)) * pixelRatio;
             var alignedPosition =
