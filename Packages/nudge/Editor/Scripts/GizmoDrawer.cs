@@ -27,7 +27,7 @@ namespace AID.Nudge
 
             if (!commentGO.hidesTextInSceneViewport && !commentGO.comment.hidden)
             {
-                DrawString(commentGO);
+                DrawString(commentGO, settings);
             }
         }
 
@@ -60,7 +60,7 @@ namespace AID.Nudge
             }
         }
 
-        static public void DrawString(CommentGameObject commentGO)
+        static public void DrawString(CommentGameObject commentGO, Settings settings)
         {
             var view = UnityEditor.SceneView.currentDrawingSceneView;
             if (!view)
@@ -69,6 +69,11 @@ namespace AID.Nudge
             string text = commentGO.comment.body;
             Color normalTextColor = commentGO.normalTextColor;
             Color hoverTextColor = commentGO.hoverTextColor;
+            if (commentGO.comment.isTask)
+            {
+                normalTextColor *= settings.isTaskTint;
+                hoverTextColor *= settings.isTaskTint;
+            }
             Vector2 anchor = commentGO.anchor;
             float textSize = commentGO.textSize;
             Vector3 screenPosition = view.camera.WorldToScreenPoint(worldPosition);
