@@ -17,7 +17,7 @@ I wanted to be able to put comments and todos on prefabs, scenes, gameobjects, a
 
 How do I use this?
 ---
-- Add Nudge to your package manager with Add Git https://github.com/stevehalliwell/Nudge.git#upm
+- Add Nudge to your package manager with Add Git https://github.com/SAM-tak/Nudge.git#upm
  - If Unity reports it is unable to find git, you don't have a system install of git setup, try https://git-scm.com/download/win. You will need to close and re open Unity and Unity Hub after git is installed.
 - Add Comments to GameObjects within scenes so they can live on, or make reference to, other scene objects.
 	- Via GameObject menu, rightlick.
