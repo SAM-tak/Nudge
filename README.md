@@ -20,10 +20,10 @@ How do I use this?
 - Add Nudge to your package manager with Add Git https://github.com/stevehalliwell/Nudge.git#upm
  - If Unity reports it is unable to find git, you don't have a system install of git setup, try https://git-scm.com/download/win. You will need to close and re open Unity and Unity Hub after git is installed.
 - Add Comments to GameObjects within scenes so they can live on, or make reference to, other scene objects.
-	- Via GameObject menu, rightlick, or shortcut (defaults to ctrl+shift+c).
+	- Via GameObject menu, rightlick.
 ![adding a scene comment](Media/add_scene_comment.gif)
 - Add/Create a CommentSO to denote comments regarding the project in general or specific assets.
-	- Via Create menu, rightlick, or shortcut (defaults to ctrl+shift+alt+c).
+	- Via Create menu, rightlick.
 ![adding a project comment](Media/add_project_comment.gif)
 - Open Window->Tasks and Comments to see all comments in the scene and project.
 ![Open Nudge Menu](Media/open_menu.gif)
@@ -31,6 +31,3 @@ How do I use this?
 Contributions?
 ---
 Nudge is still in development and is very open to contributions! Bugs and feature requests are encouraged in the Issues.
-
-
-
