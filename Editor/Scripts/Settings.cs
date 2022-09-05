@@ -37,7 +37,18 @@ namespace AID.Nudge
         public string commentTaskGizmoPath = "Packages/net.sam-tak.nudge/Gizmos/CommentTaskIcon.png";
         public string commentTaskLinkedGizmoPath = "Packages/net.sam-tak.nudge/Gizmos/CommentTaskLinkIcon.png";
 
-        public void Save() => Save(true);
+        void OnEnable()
+        {
+            CommentGameObject.defaultNormalTextColor = defaultNormalTextColor;
+            CommentGameObject.defaultHoverTextColor = defaultHoverTextColor;
+        }
+
+        public void Save()
+        {
+            Save(true);
+            CommentGameObject.defaultNormalTextColor = defaultNormalTextColor;
+            CommentGameObject.defaultHoverTextColor = defaultHoverTextColor;
+        }
     }
 
     public class NudgeSettingsProvider : SettingsProvider

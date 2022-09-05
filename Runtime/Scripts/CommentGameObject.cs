@@ -10,8 +10,10 @@ namespace AID.Nudge
     /// </summary>
     public class CommentGameObject : MonoBehaviour, ICommentHolder
     {
-        public Comment comment;
-        public Color normalTextColor = Color.black;
+        static public Color defaultNormalTextColor = new Color(0.5f, 0.5f, 0.5f, 0.5f);
+        static public Color defaultHoverTextColor = Color.white;
+        public Comment comment = new();
+        public Color normalTextColor = new Color(0.5f, 0.5f, 0.5f, 0.5f);
         public Color hoverTextColor = Color.white;
         public Vector2 anchor = Vector2.one;
         [Range(1, 100)]
@@ -22,9 +24,16 @@ namespace AID.Nudge
         public string Name => gameObject.name;
         public Object UnityObject => this;
 
+        protected virtual void Reset()
+        {
+            tag = "EditorOnly";
+            normalTextColor = defaultNormalTextColor;
+            hoverTextColor = defaultHoverTextColor;
+        }
+
         public virtual void OnValidate()
         {
-            if (comment == null) comment = new Comment();
+            if (comment == null) comment = new();
             comment.ValidateInternalData();
         }
 
