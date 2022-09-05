@@ -3,10 +3,10 @@
 namespace AID.Nudge
 {
     //This is what we want but more, so we use custom menu items in NudgeMenuItems
-    //[CreateAssetMenu( menuName = "CommentSO %$&c", fileName = "New CommentSO")]
-    public class CommentSO : ScriptableObject, ICommentHolder
+    //[CreateAssetMenu( menuName = "Comment %$&c", fileName = "New Comment")]
+    public class CommentScriptableObject : ScriptableObject, ICommentHolder
     {
-        public Comment comment;
+        public Comment comment = new();
 
         public Comment Comment => comment;
 

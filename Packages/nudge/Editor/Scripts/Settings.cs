@@ -7,7 +7,7 @@ using UnityEditor;
 namespace AID.Nudge
 {
     [FilePath("ProjectSettings/NudgeSettings.asset", FilePathAttribute.Location.ProjectFolder)]
-    public class NudgeSettings : ScriptableSingleton<NudgeSettings>
+    public class Settings : ScriptableSingleton<Settings>
     {
         public enum SortMode
         {
@@ -24,7 +24,8 @@ namespace AID.Nudge
         public Color hiddenTint = new Color(0.8f, 0.8f, 0.8f, 1);
         public Color isTaskTint = new Color(0.8f, 1, 0.8f, 1);
         public Color linkedTint = new Color(0.8f, 0.8f, 1, 1);
-        public Color defaultTextColor = Color.black;
+        public Color defaultNormalTextColor = Color.black;
+        public Color defaultHoverTextColor = Color.white;
         public string defaultCommentName = "New Comment";
         public string defaultTargetedCommentFormat = "Comment On {0}";
 
@@ -48,7 +49,7 @@ namespace AID.Nudge
         public override void OnActivate(string searchContext, VisualElement rootElement)
         {
             // This function is called when the user clicks on the MyCustom element in the Settings window.
-            var settings = NudgeSettings.instance;
+            var settings = Settings.instance;
             // let scriptable object be editable
             settings.hideFlags = HideFlags.HideAndDontSave & ~HideFlags.NotEditable;
             Editor.CreateCachedEditor(settings, null, ref _editor);
@@ -62,7 +63,7 @@ namespace AID.Nudge
             if (EditorGUI.EndChangeCheck())
             {
                 // save if needed
-                NudgeSettings.instance.Save();
+                Settings.instance.Save();
             }
         }
 
@@ -71,7 +72,7 @@ namespace AID.Nudge
         public static SettingsProvider CreateNudgeSettingsProvider()
         {
             var provider = new NudgeSettingsProvider("Project/Nudge Settings", SettingsScope.Project);
-            provider.keywords = GetSearchKeywordsFromSerializedObject(new SerializedObject(NudgeSettings.instance));
+            provider.keywords = GetSearchKeywordsFromSerializedObject(new SerializedObject(Settings.instance));
             return provider;
         }
     }
