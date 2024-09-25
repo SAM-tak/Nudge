@@ -48,7 +48,7 @@ namespace AID.Nudge
 
         protected void Recache()
         {
-            allCommentGO = FindObjectsOfType<CommentGameObject>();
+            allCommentGO = FindObjectsByType<CommentGameObject>(FindObjectsSortMode.None);
 
             var commentSOGuids = AssetDatabase.FindAssets("t:" + nameof(CommentScriptableObject));
             allCommentSO = commentSOGuids.Select(x => AssetDatabase.GUIDToAssetPath(x))

@@ -1,5 +1,6 @@
 ﻿using UnityEditor;
 using UnityEngine;
+using UnityEditor.SceneManagement;
 
 namespace AID.Nudge
 {
@@ -13,7 +14,9 @@ namespace AID.Nudge
             var selectedTrans = Selection.transforms;
 
             //should determine if this is in the scene or project?
-            var newComment = new GameObject(settings.defaultCommentName, typeof(CommentGameObject)).GetComponent<CommentGameObject>();
+            var go = new GameObject(settings.defaultCommentName, typeof(CommentGameObject));
+            StageUtility.PlaceGameObjectInCurrentStage(go);
+            var newComment = go.GetComponent<CommentGameObject>();
 
             if (selectedTrans != null && selectedTrans.Length > 0)
             {
