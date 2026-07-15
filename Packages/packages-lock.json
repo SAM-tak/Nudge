@@ -136,7 +136,7 @@
       }
     },
     "net.sam-tak.nudge": {
-      "version": "file:nudge",
+      "version": "file:net.sam-tak.nudge",
       "depth": 0,
       "source": "embedded",
       "dependencies": {}
