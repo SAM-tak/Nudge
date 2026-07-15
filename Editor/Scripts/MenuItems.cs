@@ -1,0 +1,54 @@
+﻿using UnityEditor;
+using UnityEngine;
+using UnityEditor.SceneManagement;
+
+namespace AID.Nudge
+{
+    public static class MenuItems
+    {
+        [MenuItem("GameObject/Comment", false, 20)]
+        public static void CreateSceneComment()
+        {
+            var settings = Settings.instance;
+            //as per doco https://docs.unity3d.com/ScriptReference/Selection-transforms.html this gives only scene objects
+            var selectedTrans = Selection.transforms;
+
+            //should determine if this is in the scene or project?
+            var go = new GameObject(settings.defaultCommentName, typeof(CommentGameObject));
+            StageUtility.PlaceGameObjectInCurrentStage(go);
+            var newComment = go.GetComponent<CommentGameObject>();
+
+            if (selectedTrans != null && selectedTrans.Length > 0)
+            {
+                newComment.comment.SetSelectedItems(selectedTrans);
+                newComment.gameObject.name = string.Format(settings.defaultTargetedCommentFormat, selectedTrans[0].gameObject.name);
+            }
+
+            Undo.RegisterCreatedObjectUndo(newComment.gameObject, $"Created: {newComment.gameObject.name}");
+
+            Selection.activeObject = newComment;
+        }
+
+        [MenuItem("Assets/Create/Comment")]
+        public static void CreateAssetComment()
+        {
+            var settings = Settings.instance;
+
+            var newComment = ScriptableObject.CreateInstance<CommentScriptableObject>();
+            newComment.name = settings.defaultCommentName;
+
+            var selectedAssets = Selection.GetFiltered<UnityEngine.Object>(SelectionMode.Assets);
+
+            if (selectedAssets != null && selectedAssets.Length > 0)
+            {
+                newComment.comment.SetSelectedItems(selectedAssets);
+                newComment.name = string.Format(settings.defaultTargetedCommentFormat, selectedAssets[0].name);
+            }
+
+            ProjectWindowUtil.CreateAsset(newComment, newComment.name + ".asset");
+            ProjectWindowUtil.ShowCreatedAsset(newComment);
+
+            //no undo for creating assets
+        }
+    }
+}
