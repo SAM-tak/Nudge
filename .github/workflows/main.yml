@@ -25,4 +25,4 @@ jobs:
         fi
         git push -f -u origin upm
       env:
-        PKG_ROOT: Packages/nudge
+        PKG_ROOT: Packages/net.sam-tak.nudge
