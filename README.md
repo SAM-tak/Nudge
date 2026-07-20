@@ -1,5 +1,7 @@
 # ![Nudge Logo](Media/nudge_logo.png)
 
+[![openupm](https://img.shields.io/npm/v/net.sam-tak.nudge?label=OpenUPM&registry_uri=https://package.openupm.com)](https://openupm.com/packages/net.sam-tak.nudge)
+
 Adding comments, and todos, in code is simple, easy, and invaluable for feedback, reminders, and async communication. Nudge seeks to replicate some of that value with in Unity itself. Sometimes all you need is a little nudge in the right direction.
 
 ![Nudge gizmos in a scene](Media/scene_gizmos.jpg)
