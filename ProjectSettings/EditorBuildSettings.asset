@@ -9,7 +9,5 @@ EditorBuildSettings:
     path: Assets/Test Usage/test.unity
     guid: a03e97824a16e654ea0a35e8f8f55f1b
   m_configObjects:
-    com.unity.input.settings: {fileID: 11400000, guid: 329c0133c512feb4db8a9573a7f8a9de,
-      type: 2}
-    com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 4dc2f2ad08197914d80cd210b9d87dc6,
-      type: 3}
+    com.unity.input.settings: {fileID: 11400000, guid: 329c0133c512feb4db8a9573a7f8a9de, type: 2}
+    com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 4dc2f2ad08197914d80cd210b9d87dc6, type: 3}
